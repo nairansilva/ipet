@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   loginForm: FormGroup;
+  isLoading = false;
 
   constructor(
     private authService: AuthService,
@@ -28,14 +29,17 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      this.isLoading = true;
       const { email, password } = this.loginForm.value;
       this.authService
         .login(email, password)
         .then((result) => {
+          this.isLoading = false;
           console.log('Logged in successfully:', result);
           this.router.navigate(['/home']);
         })
         .catch((error) => {
+          this.isLoading = false;
           console.error('Error logging in:', error);
         });
     }

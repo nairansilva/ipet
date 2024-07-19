@@ -21,6 +21,10 @@
 </form> -->
 
 <div class="login-container">
+  @if (isLoading) {
+  <mat-spinner></mat-spinner>
+
+  } @else {
   <mat-card>
     <mat-card-header>
       <mat-card-title>Login</mat-card-title>
@@ -41,4 +45,5 @@
       </form>
     </mat-card-content>
   </mat-card>
+  }
 </div>
