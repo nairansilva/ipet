@@ -19,17 +19,6 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
-  login(email: string, password: string) {
-    this.authService
-      .login(email, password)
-      .then((result) => {
-        console.log('Logged in successfully:', result);
-      })
-      .catch((error) => {
-        console.error('Error logging in:', error);
-      });
-  }
-
   ngOnInit() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
