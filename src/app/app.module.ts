@@ -11,6 +11,14 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { LoginModule } from './pages/login/login.module';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,9 +26,18 @@ import { LoginModule } from './pages/login/login.module';
     BrowserModule,
     AppRoutingModule,
     LoginModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatButtonModule,
+    MatListModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [
+    provideAnimations(),
     // provideAnimationsAsync(),
     // provideFirebaseApp(() =>
     //   initializeApp(environment.firebaseConfig )

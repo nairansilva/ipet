@@ -1,0 +1,46 @@
+.example-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+mat-sidenav {
+  width: 200px;
+}
+
+mat-sidenav.minimized {
+  width: 60px;
+}
+
+mat-sidenav-content {
+  padding: 20px;
+}
+
+mat-nav-list {
+  padding: 0;
+}
+
+mat-list-item {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+mat-list-item mat-icon {
+  margin-right: 10px;
+}
+
+.toggle-button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 20px);
+}
+
+.sidenav-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

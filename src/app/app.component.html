@@ -1,1 +1,39 @@
-<router-outlet></router-outlet>
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="example-app-name">Responsive App</h1>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav
+      mode="side"
+      #snav
+      [class.minimized]="!isSidenavOpen"
+      class="sidenav"
+    >
+      <mat-nav-list>
+        <mat-list-item routerLink="/home">
+          <mat-icon>home</mat-icon>
+          <span *ngIf="isSidenavOpen">Home</span>
+        </mat-list-item>
+        <mat-list-item routerLink="pets">
+          <mat-icon>pets</mat-icon>
+          <span *ngIf="isSidenavOpen">Pets</span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>person</mat-icon>
+          <span *ngIf="isSidenavOpen">Donos</span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>event</mat-icon>
+          <span *ngIf="isSidenavOpen">Agenda</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
