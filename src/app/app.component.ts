@@ -1,4 +1,4 @@
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AuthGuard } from './core/authGuard';
@@ -22,7 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private canActivate: AuthService,
     changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher
+    media: MediaMatcher,
+    private router: Router
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -59,5 +60,6 @@ export class AppComponent implements OnInit, OnDestroy {
     console.log('Entrei');
     this.canActivate.logout();
     this.isLogged = false;
+    this.router.navigate(['/login']);
   }
 }

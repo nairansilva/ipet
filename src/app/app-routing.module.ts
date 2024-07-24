@@ -9,11 +9,13 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'home',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'pets',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./pages/pets/pets.module').then((m) => m.PetsModule),
   },
