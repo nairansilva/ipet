@@ -25,9 +25,16 @@
   <mat-spinner></mat-spinner>
 
   } @else {
-  <mat-card>
+  <mat-card class="card-login">
     <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
+      <div class="header-container">
+        <img
+          class="example-header-image"
+          src="../../../assets/imagens/pet_shop_logo_128x128.png"
+          alt="Logo"
+        />
+      </div>
+      <!-- <mat-card-title>Login</mat-card-title> -->
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">

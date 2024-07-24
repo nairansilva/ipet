@@ -1,9 +1,54 @@
+.background {
+  background-color: aqua;
+}
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-image: url(../../../assets/imagens/fundo_login.webp);
+  background-size: cover; /* A imagem cobre toda a área disponível */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Não repete a imagem */
+  width: 100%;
 }
+
+.card-login {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  max-width: 300px; /* Ajuste o tamanho da imagem conforme necessário */
+  border-radius: 50%;
+  height: auto;
+}
+
+/* .example-header-image {
+
+  background-size: cover;
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: blue;
+  align-items: center;
+} */
 
 mat-card {
   width: 400px;
