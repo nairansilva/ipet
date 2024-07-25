@@ -12,7 +12,13 @@ import { DeleteDialogComponent } from '../../shared/components/delete-dialog/del
   styleUrls: ['./pets.component.css'],
 })
 export class PetsComponent implements OnInit {
-  displayedColumns: string[] = ['actions', 'id', 'name', 'type', 'birthday'];
+  displayedColumns: string[] = [
+    'actions',
+    'id',
+    'name',
+    'type',
+    'birthdayFormated',
+  ];
   dataSource = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -33,11 +39,14 @@ export class PetsComponent implements OnInit {
       this.frestoreService
         .getFilteredRecords('pets', 'name', filterValue)
         .subscribe((data) => {
-          this.dataSource.data = data;
           console.log(data);
           data.map((dataPet) => {
-            dataPet.birthday = dataPet.birthday.toDate().toLocaleDateString();
+            dataPet.birthdayFormated = dataPet.birthday
+              .toDate()
+              .toLocaleDateString();
           });
+          this.dataSource.data = data;
+          console.log(this.dataSource);
           this.dataSource.paginator = this.paginator;
         });
     }
@@ -45,11 +54,14 @@ export class PetsComponent implements OnInit {
 
   loadData() {
     this.frestoreService.getRecords('pets').subscribe((data) => {
-      this.dataSource.data = data;
       console.log(data);
       data.map((dataPet) => {
-        dataPet.birthday = dataPet.birthday.toDate().toLocaleDateString();
+        dataPet.birthdayFormated = dataPet.birthday
+          .toDate()
+          .toLocaleDateString();
       });
+      this.dataSource.data = data;
+      console.log(this.dataSource);
       this.dataSource.paginator = this.paginator;
     });
   }
@@ -69,10 +81,22 @@ export class PetsComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '500px',
       data: {
-        title: `Deseja Apagar o Pet ${name}?`,
+        title: `Deletar Pet`,
+        message: `Deseja Apagar o Pet ${name}?`,
         id: id,
         collection: 'pets',
       },
+    });
+  }
+
+  EditPet(data: any) {
+    const dialogRef = this.dialog.open(PetFormComponent, {
+      width: '400px',
+      data: data || {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
     });
   }
 }

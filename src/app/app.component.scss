@@ -1,5 +1,5 @@
 .container {
-  height: 100vh;
+  height: 93vh;
   width: 100vw;
 }
 
@@ -32,8 +32,18 @@ mat-list-item mat-icon {
   margin-right: 10px;
 }
 
+.container-sidenav {
+  position: fixed;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000;
+}
 .toolbar {
   background-color: #9ac4b3;
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000;
 }
 
 .toggle-button {
@@ -46,6 +56,4 @@ mat-list-item mat-icon {
 
 .sidenav-content {
   height: 100%;
-  display: flex;
-  flex-direction: column;
 }

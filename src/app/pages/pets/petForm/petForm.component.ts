@@ -1,5 +1,5 @@
 import { StorageService } from './../../../shared/services/storage-service.service';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirestoreService } from '../../../shared/services/fire-store.service';
@@ -9,7 +9,7 @@ import { FirestoreService } from '../../../shared/services/fire-store.service';
   templateUrl: './petForm.component.html',
   styleUrls: ['./petForm.component.css'],
 })
-export class PetFormComponent {
+export class PetFormComponent implements OnInit {
   petForm: FormGroup;
   uploadPercent: number = 0;
   downloadURL: any = '';
@@ -23,11 +23,25 @@ export class PetFormComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.petForm = this.fb.group({
+      id: [''],
       name: ['', Validators.required],
       type: ['', Validators.required],
       birthday: ['', Validators.required],
       photoURL: ['', Validators.required],
     });
+  }
+
+  ngOnInit(): void {
+    if (this.data.id) {
+      this.petForm.patchValue({
+        id: this.data.id,
+        name: this.data.name,
+        type: this.data.type,
+        birthday: this.data.birthday.toDate(),
+        photoURL: this.data.photoURL,
+      });
+      this.imgUrl = this.data.photoURL;
+    }
   }
 
   onFileSelected(event: any) {
