@@ -1,3 +1,4 @@
+import { GenericsService } from './../../shared/services/generics.service';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 
@@ -7,26 +8,61 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  mobileQuery: MediaQueryList;
-  isSidenavOpen = true;
+  constructor(private genericsService: GenericsService) {}
+  dateToday =
+    this.genericsService.getWeekDayString() +
+    ' - ' +
+    new Date().toLocaleDateString();
+  pets: any[] = [];
+  ngOnDestroy(): void {}
 
-  fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
-
-  private _mobileQueryListener: () => void;
-
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+  ngOnInit() {
+    this.pets = [
+      {
+        name: 'cacorro',
+        type: 'cat',
+        picture: 'foto',
+      },
+      {
+        name: 'gato',
+        type: 'cachorro',
+        picture: 'foto',
+      },
+      {
+        name: 'gato',
+        type: 'cachorro',
+        picture: 'foto',
+      },
+      {
+        name: 'gato',
+        type: 'cachorro',
+        picture: 'foto',
+      },
+      {
+        name: 'gato',
+        type: 'cachorro',
+        picture: 'foto',
+      },
+      {
+        name: 'gato',
+        type: 'cachorro',
+        picture: 'foto',
+      },
+      {
+        name: 'gato',
+        type: 'cachorro',
+        picture: 'foto',
+      },
+      {
+        name: 'gato',
+        type: 'cachorro',
+        picture: 'foto',
+      },
+      {
+        name: 'gato',
+        type: 'cachorro',
+        picture: 'foto',
+      },
+    ];
   }
-
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
-
-  toggleSidenav() {
-    this.isSidenavOpen = !this.isSidenavOpen;
-  }
-
-  ngOnInit() {}
 }

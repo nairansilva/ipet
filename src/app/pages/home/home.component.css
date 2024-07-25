@@ -1,0 +1,29 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px; /* Espaço entre os cartões */
+}
+
+.card-item {
+  max-width: 400px;
+  flex: 1 1 calc(33.333% - 10px); /* Cada card ocupa 1/3 da largura do contêiner, ajustando o espaço */
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .card-item {
+    flex: 1 1 calc(50% - 16px); /* Em telas menores, cada card ocupa 1/2 da largura */
+  }
+}
+
+@media (max-width: 480px) {
+  .card-item {
+    flex: 1 1 100%; /* Em telas muito pequenas, cada card ocupa a largura total */
+  }
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}

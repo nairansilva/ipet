@@ -1,0 +1,63 @@
+<h1 mat-dialog-title>Adicionar Pet</h1>
+<div mat-dialog-content>
+  <div class="header-container">
+    <input
+      type="file"
+      accept="image/*"
+      style="display: none"
+      (change)="onFileSelected($event)"
+      #fileUpload
+    />
+
+    <img
+      class="image-logo"
+      src="{{ imgUrl }}"
+      alt="Logo"
+      (click)="fileUpload.click()"
+    />
+  </div>
+
+  <form [formGroup]="petForm">
+    <!-- Nome -->
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <!-- Tipo -->
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="dog">Cachorro</mat-option>
+        <mat-option value="cat">Gato</mat-option>
+        <mat-option value="other">Outro</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Aniversário -->
+    <mat-form-field appearance="fill">
+      <mat-label>Aniversário</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="birthday" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Barra de progresso para upload -->
+    <mat-progress-bar
+      mode="determinate"
+      [value]="uploadPercent"
+      color="secondary"
+    ></mat-progress-bar>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button (click)="onCancel()" error>Cancelar</button>
+  <button
+    mat-flat-button
+    primary
+    (click)="onSave()"
+    [disabled]="!petForm.valid"
+  >
+    Salvar
+  </button>
+</div>

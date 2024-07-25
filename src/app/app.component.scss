@@ -5,6 +5,7 @@
 
 mat-sidenav {
   width: 200px;
+  background-color: #9ac4b3;
 }
 
 mat-sidenav.minimized {
@@ -29,6 +30,10 @@ mat-list-item {
 
 mat-list-item mat-icon {
   margin-right: 10px;
+}
+
+.toolbar {
+  background-color: #9ac4b3;
 }
 
 .toggle-button {

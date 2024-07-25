@@ -1,0 +1,29 @@
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.image-logo {
+  cursor: pointer;
+  max-width: 100px; /* Ajuste o tamanho da imagem conforme necessário */
+  border-radius: 50%;
+  height: auto;
+  display: flex;
+  align-self: center;
+  align-items: center;
+}
+.image-logo:hover {
+  cursor: pointer;
+}
+
+mat-dialog-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
