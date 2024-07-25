@@ -1,4 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@use "@angular/material" as mat;
+
+.mat-mdc-snack-bar-container {
+  &.success {
+    --mdc-snackbar-container-color: #9ac4b3;
+    // --mat-mdc-snack-bar-button-color: #fff;
+    // --mdc-snackbar-supporting-text-color: #fff;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

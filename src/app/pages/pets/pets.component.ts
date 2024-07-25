@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { PetFormComponent } from './petForm/petForm.component';
+import { DeleteDialogComponent } from '../../shared/components/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-pets',
@@ -61,6 +62,17 @@ export class PetsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
+    });
+  }
+
+  deletePet(id: string, name: string) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '500px',
+      data: {
+        title: `Deseja Apagar o Pet ${name}?`,
+        id: id,
+        collection: 'pets',
+      },
     });
   }
 }
