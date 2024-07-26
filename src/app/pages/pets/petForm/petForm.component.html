@@ -3,7 +3,9 @@
   <div class="header-container">
     <input
       type="file"
-      accept="image/*;capture=camera"
+      name="selfie"
+      accept="image/*"
+      capture="user"
       style="display: none"
       (change)="onFileSelected($event)"
       #fileUpload
