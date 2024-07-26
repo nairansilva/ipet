@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { PetFormComponent } from './petForm/petForm.component';
 import { DeleteDialogComponent } from '../../shared/components/delete-dialog/delete-dialog.component';
+import { ScreenService } from '../../shared/services/screen.service';
 
 @Component({
   selector: 'app-pets',
@@ -20,12 +21,20 @@ export class PetsComponent implements OnInit {
     'birthdayFormated',
   ];
   dataSource = new MatTableDataSource<any>();
+  isMobile = false;
+
+  teste = 'https://material.angular.io/assets/img/examples/shiba1.jpg';
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private frestoreService: FirestoreService,
-    public dialog: MatDialog
-  ) {}
+    public dialog: MatDialog,
+    private screenService: ScreenService
+  ) {
+    this.screenService.isHandset$.subscribe((isHandset) => {
+      this.isMobile = isHandset;
+    });
+  }
 
   ngOnInit() {
     this.loadData();
@@ -39,14 +48,12 @@ export class PetsComponent implements OnInit {
       this.frestoreService
         .getFilteredRecords('pets', 'name', filterValue)
         .subscribe((data) => {
-          console.log(data);
           data.map((dataPet) => {
             dataPet.birthdayFormated = dataPet.birthday
               .toDate()
               .toLocaleDateString();
           });
           this.dataSource.data = data;
-          console.log(this.dataSource);
           this.dataSource.paginator = this.paginator;
         });
     }
@@ -54,14 +61,12 @@ export class PetsComponent implements OnInit {
 
   loadData() {
     this.frestoreService.getRecords('pets').subscribe((data) => {
-      console.log(data);
       data.map((dataPet) => {
         dataPet.birthdayFormated = dataPet.birthday
           .toDate()
           .toLocaleDateString();
       });
       this.dataSource.data = data;
-      console.log(this.dataSource);
       this.dataSource.paginator = this.paginator;
     });
   }
@@ -72,9 +77,7 @@ export class PetsComponent implements OnInit {
       data: pet || {},
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 
   deletePet(id: string, name: string) {
@@ -95,8 +98,6 @@ export class PetsComponent implements OnInit {
       data: data || {},
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 }

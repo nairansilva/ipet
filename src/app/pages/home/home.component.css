@@ -13,12 +13,14 @@
 
 @media (max-width: 768px) {
   .card-item {
+    max-width: 300px;
     flex: 1 1 calc(50% - 16px); /* Em telas menores, cada card ocupa 1/2 da largura */
   }
 }
 
 @media (max-width: 480px) {
   .card-item {
+    max-width: 300px;
     flex: 1 1 100%; /* Em telas muito pequenas, cada card ocupa a largura total */
   }
 }

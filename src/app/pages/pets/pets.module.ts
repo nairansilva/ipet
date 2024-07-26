@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatSelectModule,
     MatDatepickerModule,
     MatProgressBarModule,
+    MatCardModule,
   ],
   declarations: [PetsComponent, PetFormComponent],
 })

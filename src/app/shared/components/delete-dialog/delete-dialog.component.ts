@@ -43,9 +43,7 @@ export class DeleteDialogComponent {
     private snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<DeleteDialogComponent>,
     private firestoreService: FirestoreService
-  ) {
-    console.log('data', this.data);
-  }
+  ) {}
 
   delete() {
     this.firestoreService.deleteDoc(this.data.collection, this.data.id).then();

@@ -4,6 +4,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { AuthGuard } from './core/authGuard';
 import { AuthService } from './core/auth.service';
 import { take } from 'rxjs';
+import { ScreenService } from './shared/services/screen.service';
 
 @Component({
   selector: 'app-root',
@@ -42,22 +43,18 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('Entrei aqui');
     this.canActivate
       .getAuthState()
       .pipe(take(1))
       .subscribe({
         next: (res) => {
-          console.log('sucesso', res);
           this.isLogged = !!res;
         },
-        error: (erro) => {
-          console.log('erro', erro);
-        },
+        error: (erro) => {},
       });
   }
+
   teste() {
-    console.log('Entrei');
     this.canActivate.logout();
     this.isLogged = false;
     this.router.navigate(['/login']);

@@ -53,7 +53,6 @@ export class PetFormComponent implements OnInit {
         .uploadFile('pets/' + filename, file)
         .subscribe((url) => {
           this.uploadPercent = 50;
-          console.log('url aqui', url);
           this.downloadURL = url?.ref.getDownloadURL().then((urlDownload) => {
             this.imgUrl = urlDownload;
             this.uploadPercent = 100;
@@ -65,7 +64,6 @@ export class PetFormComponent implements OnInit {
 
   onSave() {
     if (this.petForm.valid) {
-      console.log(this.petForm.value);
       this.petService.createDoc('pets', this.petForm.value).then(() => {
         this.dialogRef.close();
       });
@@ -80,8 +78,6 @@ export class PetFormComponent implements OnInit {
 
   pictureClick() {
     let teste = new FileReader();
-    teste.onloadend = (e) => {
-      console.log(teste.result);
-    };
+    teste.onloadend = (e) => {};
   }
 }

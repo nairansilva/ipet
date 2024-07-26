@@ -22,6 +22,7 @@
   />
 </mat-form-field>
 
+@if(!isMobile){
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" class="full-width-table">
     <ng-container matColumnDef="actions">
@@ -68,3 +69,42 @@
     showFirstLastButtons
   ></mat-paginator>
 </div>
+
+} @else {
+<div class="card-container">
+  <mat-card
+    class="card-item"
+    appearance="outlined"
+    *ngFor="let card of dataSource.data"
+    class="card-item"
+  >
+    <mat-card-header>
+      <div class="header-container">
+        <img class="example-header-image" [src]="card.photoURL" alt="Logo" />
+      </div>
+    </mat-card-header>
+
+    <mat-card-content>
+      <ul>
+        <li><b>Nome: </b>{{ card.name }}</li>
+        <li><b>Tipo: </b>{{ card.type }}</li>
+        <li><b>Aniversário: </b>{{ card.birthdayFormated }}</li>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions class="container-actions">
+      <div class="container-buttons">
+        <button mat-icon-button color="primary" (click)="EditPet(card)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deletePet(card.id, card.name)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+}

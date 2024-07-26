@@ -35,12 +35,10 @@ export class LoginComponent implements OnInit {
         .login(email, password)
         .then((result) => {
           this.isLoading = false;
-          console.log('Logged in successfully:', result);
           this.router.navigate(['/home']);
         })
         .catch((error) => {
           this.isLoading = false;
-          console.error('Error logging in:', error);
         });
     }
   }
