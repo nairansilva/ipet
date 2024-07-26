@@ -1,59 +1,65 @@
 .container {
-  height: 93vh;
-  width: 100vw;
-}
-
-mat-sidenav {
-  width: 200px;
-  background-color: #9ac4b3;
-}
-
-mat-sidenav.minimized {
-  width: 60px;
-}
-
-mat-sidenav-content {
-  padding: 20px;
-}
-
-mat-nav-list {
-  padding: 0;
-}
-
-mat-list-item {
   display: flex;
-  align-items: center;
-  font-size: 16px;
-  padding: 10px 20px;
-  cursor: pointer;
+  flex-direction: column;
+  height: 100vh;
 }
 
-mat-list-item mat-icon {
-  margin-right: 10px;
+.toolbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #9ac4b3; /* Cor do toolbar */
 }
 
 .container-sidenav {
-  position: fixed;
-  position: -webkit-sticky; /* For macOS/iOS Safari */
-  top: 0; /* Sets the sticky toolbar to be on top */
-  z-index: 1000;
-}
-.toolbar {
-  background-color: #9ac4b3;
-  position: sticky;
-  position: -webkit-sticky; /* For macOS/iOS Safari */
-  top: 0; /* Sets the sticky toolbar to be on top */
-  z-index: 1000;
+  display: flex;
+  flex: 1;
+  padding-top: 64px; /* Altura do toolbar */
 }
 
-.toggle-button {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 20px);
+.sidenav {
+  position: fixed;
+  top: 64px; /* Altura do toolbar */
+  height: calc(100% - 64px);
+  width: 200px; /* Largura quando aberto */
+  z-index: 999;
+  background-color: #9ac4b3; /* Cor do sidenav */
+  transition: width 0.3s;
+}
+
+.sidenav.minimized {
+  width: 60px; /* Largura quando minimizado */
 }
 
 .sidenav-content {
-  height: 100%;
+  margin-left: 25px; /* Ajuste a largura conforme necessário */
+  margin-right: 25px; /* Ajuste a largura conforme necessário */
+  flex: 1;
+  transition: margin-left 0.3s;
+  width: 100%;
+}
+
+.sidenav-content.expanded {
+  margin-left: 60px; /* Ajuste a largura conforme necessário */
+}
+
+/* Ajustes para versão mobile */
+@media (max-width: 600px) {
+  .container-sidenav {
+    padding-top: 56px; /* Altura do toolbar em dispositivos móveis */
+  }
+
+  .sidenav {
+    top: 56px; /* Altura do toolbar em dispositivos móveis */
+    width: 30%; /* Sidenav ocupa a tela inteira em dispositivos móveis */
+  }
+
+  .sidenav-content {
+    margin-left: 0; /* Conteúdo ocupa a tela inteira em dispositivos móveis */
+  }
+
+  .sidenav-content.expanded {
+    margin-left: 0; /* Conteúdo ocupa a tela inteira em dispositivos móveis */
+  }
 }
