@@ -48,6 +48,12 @@
 @media (max-width: 600px) {
   .container-sidenav {
     padding-top: 56px; /* Altura do toolbar em dispositivos móveis */
+    overflow: auto; /* Permite a rolagem */
+  }
+
+  .sidenav-content::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* Oculta a barra de rolagem no Webkit (Chrome, Safari) */
   }
 
   .sidenav {
@@ -56,11 +62,19 @@
   }
 
   .sidenav-content {
+    -ms-overflow-style: none; /* Oculta a barra de rolagem no IE e Edge */
+    scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
     margin-left: 25px; /* Ajuste a largura conforme necessário */
     margin-right: 25px; /* Ajuste a largura conforme necessário */
   }
 
+  .sidenav-content.expanded::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* Oculta a barra de rolagem no Webkit (Chrome, Safari) */
+  }
+
   .sidenav-content.expanded {
-    margin-left: 0; /* Conteúdo ocupa a tela inteira em dispositivos móveis */
+    -ms-overflow-style: none; /* Oculta a barra de rolagem no IE e Edge */
+    scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
   }
 }
