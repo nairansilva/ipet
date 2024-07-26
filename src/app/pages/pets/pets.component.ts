@@ -67,7 +67,9 @@ export class PetsComponent implements OnInit {
           .toLocaleDateString();
       });
       this.dataSource.data = data;
-      this.dataSource.paginator = this.paginator;
+      if (!this.isMobile) {
+        this.dataSource.paginator = this.paginator;
+      }
     });
   }
 

@@ -1,0 +1,25 @@
+/* image-modal.component.css */
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+mat-dialog-content {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100% - 36px); /* Altura descontando as ações do dialog */
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+mat-dialog-actions {
+  justify-content: center;
+}
