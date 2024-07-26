@@ -15,6 +15,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirestoreService } from '../../../shared/services/fire-store.service';
 import { PictureModalComponent } from '../../../shared/components/picture-modal/picture-modal.component';
+import Hammer from 'hammerjs'; // Use default import
 
 @Component({
   selector: 'app-pet-form',
@@ -61,32 +62,57 @@ export class PetFormComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     const imageElement = this.imageLogo.nativeElement;
-    let pressTimer: any;
+    const hammer = new Hammer(imageElement);
 
-    imageElement.addEventListener('touchstart', (event: TouchEvent) => {
-      console.log('To pressionado');
+    hammer.on('press', (event) => {
       event.preventDefault();
-      pressTimer = setTimeout(() => {
-        const dialogRef = this.dialog.open(PictureModalComponent, {
+      const dialogRef = this.dialog.open(PictureModalComponent, {
+        width: '500px',
+        data: {
+          imgUrl: this.imgUrl,
           width: '500px',
-          data: {
-            imgUrl: this.imgUrl,
-            width: '500px',
-            height: '500px',
-          },
-        });
-      }, 1000); // 1 segundo para considerar como long press
+          height: '500px',
+        },
+      });
     });
 
-    imageElement.addEventListener('touchend', () => {
-      clearTimeout(pressTimer);
-      // this.dialog.closeAll();
+    // Prevenir o comportamento padrão de toque longo em dispositivos móveis
+    imageElement.addEventListener('touchstart', (event: TouchEvent) => {
+      event.preventDefault();
     });
 
-    imageElement.addEventListener('touchmove', () => {
-      clearTimeout(pressTimer);
-      console.log('Tirei o click 2');
+    imageElement.addEventListener('touchend', (event: TouchEvent) => {
+      event.preventDefault();
     });
+
+    imageElement.addEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
+    });
+
+    // imageElement.addEventListener('touchstart', (event: TouchEvent) => {
+    //   console.log('To pressionado');
+    //   event.preventDefault();
+    //   pressTimer = setTimeout(() => {
+    //     const dialogRef = this.dialog.open(PictureModalComponent, {
+    //       width: '500px',
+    //       data: {
+    //         imgUrl: this.imgUrl,
+    //         width: '500px',
+    //         height: '500px',
+    //       },
+    //     });
+    //   }, 1000); // 1 segundo para considerar como long press
+    // });
+
+    // imageElement.addEventListener('touchend', () => {
+    //   clearTimeout(pressTimer);
+    //   // this.dialog.closeAll();
+    // });
+
+    // imageElement.addEventListener('touchmove', () => {
+    //   clearTimeout(pressTimer);
+    //   console.log('Tirei o click 2');
+    // });
   }
 
   onFileSelected(event: any) {
