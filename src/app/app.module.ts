@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +39,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   ],
   providers: [
     provideAnimations(),
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-br' },
     // provideAnimationsAsync(),
     // provideFirebaseApp(() =>
     //   initializeApp(environment.firebaseConfig )
