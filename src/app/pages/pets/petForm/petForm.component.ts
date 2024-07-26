@@ -64,6 +64,8 @@ export class PetFormComponent implements OnInit, AfterViewInit {
     let pressTimer: any;
 
     imageElement.addEventListener('touchstart', (event: TouchEvent) => {
+      console.log('To pressionado');
+      event.preventDefault();
       pressTimer = setTimeout(() => {
         const dialogRef = this.dialog.open(PictureModalComponent, {
           width: '500px',
@@ -73,8 +75,6 @@ export class PetFormComponent implements OnInit, AfterViewInit {
             height: '500px',
           },
         });
-
-        console.log('To pressionado');
       }, 1000); // 1 segundo para considerar como long press
     });
 
