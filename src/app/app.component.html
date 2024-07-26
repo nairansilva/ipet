@@ -15,29 +15,29 @@
       class="sidenav"
     >
       <mat-nav-list>
-        <mat-list-item routerLink="/home">
+        <mat-list-item class="custom-list-item" routerLink="/home">
           <mat-icon>home</mat-icon>
           <span *ngIf="isSidenavOpen">Home</span>
         </mat-list-item>
-        <mat-list-item routerLink="pets">
+        <mat-list-item class="custom-list-item" routerLink="pets">
           <mat-icon>pets</mat-icon>
           <span *ngIf="isSidenavOpen">Pets</span>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item class="custom-list-item">
           <mat-icon>person</mat-icon>
           <span *ngIf="isSidenavOpen">Donos</span>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item class="custom-list-item">
           <mat-icon>event</mat-icon>
           <span *ngIf="isSidenavOpen">Agenda</span>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item class="custom-list-item">
           <mat-icon>exit_to_app</mat-icon>
-          <span *ngIf="isSidenavOpen" (click)="teste()">Sair</span>
+          <span *ngIf="isSidenavOpen" (click)="logout()">Sair</span>
         </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content class="sidenav-content" (click)="snav.toggle()">
+    <mat-sidenav-content class="sidenav-content" (click)="toggleNav()">
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

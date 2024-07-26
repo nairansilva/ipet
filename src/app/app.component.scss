@@ -18,6 +18,34 @@
   padding-top: 64px; /* Altura do toolbar */
 }
 
+mat-nav-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-list-item {
+  display: flex;
+  align-items: center;
+  margin: 5px; /* Ajuste o espaçamento entre os itens conforme necessário */
+  padding: 10px; /* Opcional: ajuste conforme necessário */
+  box-sizing: border-box;
+}
+
+.custom-list-item mat-icon {
+  margin-right: 8px; /* Ajuste conforme necessário */
+  font-size: 25px; /* Ajuste o tamanho do ícone conforme necessário */
+  line-height: 1; /* Garante que o ícone esteja alinhado corretamente */
+}
+
+.custom-list-item span {
+  align-self: baseline;
+  font-size: 16px;
+  line-height: 24px; /* Ajuste conforme o tamanho do ícone */
+}
+
+.custom-list-item icon {
+  font-size: 50px;
+}
 .sidenav {
   position: fixed;
   top: 64px; /* Altura do toolbar */

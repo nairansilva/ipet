@@ -12,7 +12,12 @@ import {
   MAT_DIALOG_DATA,
   MatDialog,
 } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { FirestoreService } from '../../../shared/services/fire-store.service';
 import { PictureModalComponent } from '../../../shared/components/picture-modal/picture-modal.component';
 import Hammer from 'hammerjs'; // Use default import
@@ -26,6 +31,16 @@ export class PetFormComponent implements OnInit, AfterViewInit {
   petForm: FormGroup;
   uploadPercent: number = 0;
   downloadURL: any = '';
+  weekDayList: string[] = [
+    'Segunda',
+    'Terça',
+    'Quarta',
+    'Quinta',
+    'Sexta',
+    'Sábado',
+    'Domingo',
+  ];
+
   @ViewChild('imageLogo') imageLogo: ElementRef;
 
   imgUrl = '../../../../assets/imagens/camera_logo_128x128.png';
@@ -44,6 +59,7 @@ export class PetFormComponent implements OnInit, AfterViewInit {
       type: ['', Validators.required],
       birthday: ['', Validators.required],
       photoURL: ['', Validators.required],
+      weekday: [' ', Validators.required],
     });
   }
 
@@ -55,6 +71,7 @@ export class PetFormComponent implements OnInit, AfterViewInit {
         type: this.data.type,
         birthday: this.data.birthday.toDate(),
         photoURL: this.data.photoURL,
+        weekday: this.data.weekday,
       });
       this.imgUrl = this.data.photoURL;
     }

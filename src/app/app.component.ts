@@ -1,10 +1,17 @@
 import { CanActivate, Router } from '@angular/router';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AuthGuard } from './core/authGuard';
 import { AuthService } from './core/auth.service';
 import { take } from 'rxjs';
 import { ScreenService } from './shared/services/screen.service';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +26,8 @@ export class AppComponent implements OnInit, OnDestroy {
   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
   private _mobileQueryListener: () => void;
+
+  @ViewChild('snav') sidenav: MatSidenav;
 
   constructor(
     private canActivate: AuthService,
@@ -54,7 +63,11 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
-  teste() {
+  toggleNav() {
+    this.sidenav.close();
+  }
+
+  logout() {
     this.canActivate.logout();
     this.isLogged = false;
     this.router.navigate(['/login']);

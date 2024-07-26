@@ -45,6 +45,18 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
+    <mat-form-field>
+      <mat-label>Dias da Semana</mat-label>
+      <mat-select formControlName="weekday" multiple>
+        <mat-select-trigger>
+          {{ petForm.value.weekday || "" }}
+        </mat-select-trigger>
+        @for (day of weekDayList; track day) {
+        <mat-option [value]="day">{{ day }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
     <!-- Barra de progresso para upload -->
     <mat-progress-bar
       mode="determinate"
