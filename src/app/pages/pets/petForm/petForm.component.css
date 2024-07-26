@@ -6,14 +6,15 @@
 }
 
 .image-logo {
-  cursor: pointer;
-  max-width: 100px; /* Ajuste o tamanho da imagem conforme necessário */
-  border-radius: 50%;
-  height: auto;
+  width: 100px; /* Tamanho fixo para a largura */
+  height: 100px; /* Tamanho fixo para a altura */
+  border-radius: 50%; /* Deixa a imagem redonda */
+  object-fit: cover; /* Faz a imagem cobrir o contêiner */
   display: flex;
   align-self: center;
   align-items: center;
 }
+
 .image-logo:hover {
   cursor: pointer;
 }

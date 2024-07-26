@@ -21,8 +21,8 @@
 .sidenav {
   position: fixed;
   top: 64px; /* Altura do toolbar */
-  height: calc(100% - 64px);
-  width: 200px; /* Largura quando aberto */
+  height: calc(100%);
+  width: 240px; /* Largura quando aberto */
   z-index: 999;
   background-color: #9ac4b3; /* Cor do sidenav */
   transition: width 0.3s;
@@ -56,7 +56,8 @@
   }
 
   .sidenav-content {
-    margin-left: 0; /* Conteúdo ocupa a tela inteira em dispositivos móveis */
+    margin-left: 25px; /* Ajuste a largura conforme necessário */
+    margin-right: 25px; /* Ajuste a largura conforme necessário */
   }
 
   .sidenav-content.expanded {
