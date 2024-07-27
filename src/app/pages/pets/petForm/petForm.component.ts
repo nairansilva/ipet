@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  HostListener,
   Inject,
   OnInit,
   ViewChild,
@@ -84,6 +85,21 @@ export class PetFormComponent implements OnInit, AfterViewInit {
 
     const hammer = new Hammer(imageElement);
 
+    // Prevenir o comportamento padrão de toque longo em dispositivos móveis
+    imageElement.addEventListener('touchstart', (event: TouchEvent) => {
+      event.preventDefault();
+    });
+
+    imageElement.addEventListener('touchend', (event: TouchEvent) => {
+      event.preventDefault();
+      // const fileUpload = this.fileUpload.nativeElement;
+      // fileUpload.click
+    });
+
+    imageElement.addEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
+    });
+
     hammer.on('press', (event) => {
       event.preventDefault();
       const dialogRef = this.dialog.open(PictureModalComponent, {
@@ -96,22 +112,9 @@ export class PetFormComponent implements OnInit, AfterViewInit {
       });
     });
 
-    hammer.on('click', (event) => {
+    hammer.on('tap', (event) => {
       event.preventDefault();
       fileUpload.click();
-    });
-
-    // Prevenir o comportamento padrão de toque longo em dispositivos móveis
-    imageElement.addEventListener('touchstart', (event: TouchEvent) => {
-      event.preventDefault();
-    });
-
-    imageElement.addEventListener('touchend', (event: TouchEvent) => {
-      event.preventDefault();
-    });
-
-    imageElement.addEventListener('contextmenu', (event: MouseEvent) => {
-      event.preventDefault();
     });
 
     // imageElement.addEventListener('touchstart', (event: TouchEvent) => {
