@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { PetFormComponent } from './petForm/petForm.component';
 import { DeleteDialogComponent } from '../../shared/components/delete-dialog/delete-dialog.component';
+import { PetListComponent } from '../pets/petList/petList.component';
 import { ScreenService } from '../../shared/services/screen.service';
 
 @Component({
@@ -36,42 +37,7 @@ export class PetsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.loadData();
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    if (!filterValue) {
-      this.loadData();
-    } else {
-      this.frestoreService
-        .getFilteredRecords('pets', 'name', filterValue)
-        .subscribe((data) => {
-          data.map((dataPet) => {
-            dataPet.birthdayFormated = dataPet.birthday
-              .toDate()
-              .toLocaleDateString();
-          });
-          this.dataSource.data = data;
-          this.dataSource.paginator = this.paginator;
-        });
-    }
-  }
-
-  loadData() {
-    this.frestoreService.getRecords('pets').subscribe((data) => {
-      data.map((dataPet) => {
-        dataPet.birthdayFormated = dataPet.birthday
-          .toDate()
-          .toLocaleDateString();
-      });
-      this.dataSource.data = data;
-      if (!this.isMobile) {
-        this.dataSource.paginator = this.paginator;
-      }
-    });
-  }
+  ngOnInit() {}
 
   openDialog(pet?: any): void {
     const dialogRef = this.dialog.open(PetFormComponent, {

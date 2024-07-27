@@ -22,6 +22,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import { PetListComponent } from './petList/petList.component';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { MatCardModule } from '@angular/material/card';
     MatDatepickerModule,
     MatProgressBarModule,
     MatCardModule,
+    PetListComponent,
   ],
   declarations: [PetsComponent, PetFormComponent],
 })

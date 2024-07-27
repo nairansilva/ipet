@@ -1,6 +1,7 @@
 import { GenericsService } from './../../shared/services/generics.service';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { ScreenService } from '../../shared/services/screen.service';
 
 @Component({
   selector: 'app-home',
@@ -8,61 +9,20 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  constructor(private genericsService: GenericsService) {}
-  dateToday =
-    this.genericsService.getWeekDayString() +
-    ' - ' +
-    new Date().toLocaleDateString();
-  pets: any[] = [];
+  isMobile = false;
+  constructor(
+    private genericsService: GenericsService,
+    private screenService: ScreenService
+  ) {
+    this.screenService.isHandset$.subscribe((isHandset) => {
+      this.isMobile = isHandset;
+    });
+  }
+  weekDay = this.genericsService.getWeekDayString();
+  dateToday = this.weekDay + ' - ' + new Date().toLocaleDateString();
+  filterHome = { field: this.weekDay, filter: true, operator: '==' };
+
   ngOnDestroy(): void {}
 
-  ngOnInit() {
-    this.pets = [
-      {
-        name: 'cacorro',
-        type: 'cat',
-        picture: 'foto',
-      },
-      {
-        name: 'gato',
-        type: 'cachorro',
-        picture: 'foto',
-      },
-      {
-        name: 'gato',
-        type: 'cachorro',
-        picture: 'foto',
-      },
-      {
-        name: 'gato',
-        type: 'cachorro',
-        picture: 'foto',
-      },
-      {
-        name: 'gato',
-        type: 'cachorro',
-        picture: 'foto',
-      },
-      {
-        name: 'gato',
-        type: 'cachorro',
-        picture: 'foto',
-      },
-      {
-        name: 'gato',
-        type: 'cachorro',
-        picture: 'foto',
-      },
-      {
-        name: 'gato',
-        type: 'cachorro',
-        picture: 'foto',
-      },
-      {
-        name: 'gato',
-        type: 'cachorro',
-        picture: 'foto',
-      },
-    ];
-  }
+  ngOnInit() {}
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import * as firebase from 'firebase/compat/app';
 
 @Injectable({
   providedIn: 'root',
@@ -20,11 +21,20 @@ export class FirestoreService {
 
   getFilteredRecords(
     collection: string,
-    field: string,
-    filter: string
+    filters: {
+      field: string;
+      filter: any;
+      operator: any;
+    }[]
   ): Observable<any[]> {
     return this.firestore
-      .collection(collection, (ref) => ref.where(field, '==', filter))
+      .collection(collection, (ref) => {
+        let query: any = ref;
+        for (const filter of filters) {
+          query = query.where(filter.field, filter.operator, filter.filter);
+        }
+        return query;
+      })
       .valueChanges({ idField: 'id' });
   }
 
