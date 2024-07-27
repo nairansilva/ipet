@@ -42,6 +42,7 @@ export class PetFormComponent implements OnInit, AfterViewInit {
   ];
 
   @ViewChild('imageLogo') imageLogo: ElementRef;
+  @ViewChild('fileUpload') fileUpload: ElementRef;
 
   imgUrl = '../../../../assets/imagens/camera_logo_128x128.png';
 
@@ -79,6 +80,8 @@ export class PetFormComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     const imageElement = this.imageLogo.nativeElement;
+    const fileUpload = this.fileUpload.nativeElement;
+
     const hammer = new Hammer(imageElement);
 
     hammer.on('press', (event) => {
@@ -91,6 +94,11 @@ export class PetFormComponent implements OnInit, AfterViewInit {
           height: '500px',
         },
       });
+    });
+
+    hammer.on('click', (event) => {
+      event.preventDefault();
+      fileUpload.click();
     });
 
     // Prevenir o comportamento padrão de toque longo em dispositivos móveis
