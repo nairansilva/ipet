@@ -217,7 +217,7 @@ export class PetFormComponent implements OnInit, AfterViewInit {
   onSave() {
     if (this.petForm.valid) {
       this.weekDayList.map((day) => {
-        this.petForm.value['weekday'].indexOf(day) > 0
+        this.petForm.value['weekday'].indexOf(day) >= 0
           ? (this.petForm.value[day] = true)
           : (this.petForm.value[day] = false);
       });
