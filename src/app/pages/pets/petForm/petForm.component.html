@@ -65,14 +65,16 @@
     ></mat-progress-bar>
   </form>
 </div>
-<div mat-dialog-actions>
-  <button mat-flat-button (click)="onCancel()" error>Cancelar</button>
-  <button
-    mat-flat-button
-    primary
-    (click)="onSave()"
-    [disabled]="!petForm.valid"
-  >
-    Salvar
-  </button>
+<div class="container-buttons">
+  <div mat-dialog-actions>
+    <button mat-icon-button (click)="onCancel()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onSave()" [disabled]="!petForm.valid">
+      <mat-icon>check</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onCancel()" [disabled]="!petForm.valid">
+      <mat-icon>person</mat-icon>
+    </button>
+  </div>
 </div>
