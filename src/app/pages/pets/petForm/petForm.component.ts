@@ -164,10 +164,11 @@ export class PetFormComponent implements OnInit, AfterViewInit {
           .then(() => {
             this.dialogRef.close();
           });
+      } else {
+        this.petService.createDoc('pets', this.petForm.value).then(() => {
+          this.dialogRef.close();
+        });
       }
-      this.petService.createDoc('pets', this.petForm.value).then(() => {
-        this.dialogRef.close();
-      });
     }
   }
 
