@@ -5,19 +5,13 @@
       type="file"
       name="selfie"
       accept="image/*"
-      accept="image/*"
       style="display: none"
+      capture="user"
       (change)="onFileSelected($event)"
       #fileUpload
     />
 
-    <img
-      #imageLogo
-      class="image-logo"
-      src="{{ imgUrl }}"
-      alt="Logo"
-      (click)="fileUpload.click()"
-    />
+    <img #imageLogo class="image-logo" src="{{ imgUrl }}" alt="Logo" />
   </div>
 
   <form [formGroup]="petForm">

@@ -146,19 +146,72 @@ export class PetFormComponent implements OnInit, AfterViewInit {
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
-      const filename = new Date().toTimeString();
-      this.uploadPercent = 10;
-      this.storageService
-        .uploadFile('pets/' + filename, file)
-        .subscribe((url) => {
-          this.uploadPercent = 50;
-          this.downloadURL = url?.ref.getDownloadURL().then((urlDownload) => {
-            this.imgUrl = urlDownload;
-            this.uploadPercent = 100;
-            this.petForm.patchValue({ photoURL: urlDownload });
-          });
-        });
+      this.resizeImage(file, 500, 500).then((resizedImage) => {
+        this.uploadImage(resizedImage);
+      });
     }
+  }
+
+  resizeImage(file: File, maxWidth: number, maxHeight: number): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = URL.createObjectURL(file);
+
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d')!;
+
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height = Math.round((height *= maxWidth / width));
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width = Math.round((width *= maxHeight / height));
+            height = maxHeight;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        ctx.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob(
+          (blob) => {
+            if (blob) {
+              resolve(blob);
+            } else {
+              reject(new Error('Canvas is empty'));
+            }
+          },
+          'image/jpeg',
+          0.7
+        ); // Adjust the quality parameter to reduce the file size
+      };
+
+      img.onerror = (err) => {
+        reject(err);
+      };
+    });
+  }
+
+  uploadImage(blob: any) {
+    const filename = new Date().toTimeString();
+    this.uploadPercent = 10;
+    this.storageService
+      .uploadFile('pets/' + filename, blob)
+      .subscribe((url) => {
+        this.uploadPercent = 50;
+        this.downloadURL = url?.ref.getDownloadURL().then((urlDownload) => {
+          this.imgUrl = urlDownload;
+          this.uploadPercent = 100;
+          this.petForm.patchValue({ photoURL: urlDownload });
+        });
+      });
   }
 
   onSave() {
@@ -186,8 +239,6 @@ export class PetFormComponent implements OnInit, AfterViewInit {
   onCancel(): void {
     this.dialogRef.close();
   }
-
-  uploadImage() {}
 
   pictureClick() {
     let teste = new FileReader();
